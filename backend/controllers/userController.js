@@ -90,9 +90,9 @@ export const logout = async (req, res) => {
     try {
         res.cookie("token", "", {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production", // Secure only in production
-            sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax", // Use Lax for local dev
-            expires: new Date(0), // Expire immediately
+            secure: process.env.NODE_ENV === "production",
+            sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax", 
+            expires: new Date(0), 
         });
 
         return res.status(200).json({

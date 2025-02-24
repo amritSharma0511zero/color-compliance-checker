@@ -1,6 +1,5 @@
 import { Color } from "../models/colorModel.js";
 
-// Get all colors
 export const getColors = async (req, res) => {
   try {
     const colors = await Color.find();
@@ -11,7 +10,6 @@ export const getColors = async (req, res) => {
   }
 };
 
-// Update one or multiple colors
 export const updateColors = async (req, res) => {
     try {
       const { index, color } = req.body;
@@ -20,15 +18,14 @@ export const updateColors = async (req, res) => {
         return res.status(400).json({ message: "Index must be between 0 and 5." });
       }
   
-      // Find the first color document
       const colorDoc = await Color.findOne();
   
       if (!colorDoc) {
         return res.status(404).json({ message: "Color document not found." });
       }
   
-      colorDoc.colors[index] = color; // Update the specified index
-      await colorDoc.save(); // Save the updated document
+      colorDoc.colors[index] = color; 
+      await colorDoc.save(); 
   
       res.json({ message: "Color updated successfully!", colors: colorDoc.colors });
     } catch (error) {

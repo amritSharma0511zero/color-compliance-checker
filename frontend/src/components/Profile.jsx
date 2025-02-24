@@ -7,7 +7,7 @@ const Profile = () => {
   const [userInfo, setUserInfo] = useState({ name: "Amrit Sharma", email: "amrit@gmail.com" });
   const { brandColors, setBrandColors } = useData();
   const [customColors, setCustomColors] = useState(brandColors);
-  const [isEditing, setIsEditing] = useState(false); // Toggle edit mode
+  const [isEditing, setIsEditing] = useState(false); 
   const {userData, setUserData} = useData();
 
   const handleColorChange = (category, index, value) => {
@@ -24,26 +24,20 @@ const Profile = () => {
   const logout = async () => {
     try {
         const res = await axios.post("http://localhost:8080/api/v1/user/logout", {}, {
-            withCredentials: true,  // Ensures cookies are sent and cleared
+            withCredentials: true,
         });
 
         console.log(res.data.message);
         navigate('/')
-        setUserData(null); // Clear user data after logout
+        setUserData(null);
     } catch (error) {
         console.error("Error logging out:", error);
     }
 };
 
-
-  // const saveChanges = () => {
-  //   setBrandColors(customColors);
-  //   setIsEditing(false);
-  //   alert("Profile updated successfully!");
-  // };
   const saveChanges = () => {
     setBrandColors(customColors);
-    localStorage.setItem("brandColors", JSON.stringify(customColors)); // Save colors persistently
+    localStorage.setItem("brandColors", JSON.stringify(customColors));
     setIsEditing(false);
     alert("Profile updated successfully!");
   };
@@ -69,15 +63,11 @@ const Profile = () => {
               onClick={() => navigate('profile')}
             />
           ) : (
-            // <div onClick={() => navigate('login')} className="hover:text-blue-400 transition cursor-pointer">
-            //   Login
-            // </div>
             <span>👤</span>
           )}
          Profile</h1>
       <p className="text-gray-500 text-center mb-8">Update your personal details and brand colors.</p>
 
-      {/* Profile Information */}
       <div className="bg-gray-100 p-6 rounded-xl shadow-inner">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold text-gray-700">Personal Information</h2>
@@ -118,7 +108,6 @@ const Profile = () => {
         </div>
       </div>
 
-      {/* Brand Colors */}
       <h2 className="text-xl font-semibold text-gray-700 mt-8 mb-4">Brand Colors</h2>
       <div className="bg-gray-100 p-6 rounded-xl shadow-inner">
         {Object.keys(brandColors).map((category) => (
@@ -154,8 +143,7 @@ const Profile = () => {
           Logout
         </button>
       )}
-
-      {/* Save Button (Only visible when editing) */}
+      
       {isEditing && (
         <button
           onClick={saveChanges}

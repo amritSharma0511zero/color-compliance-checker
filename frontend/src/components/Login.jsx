@@ -12,7 +12,6 @@ function Login() {
 
     const navigate = useNavigate();
     const {userData, setUserData} = useData();
-    // const dispatch = useDispatch();
 
     const handleChange = (e) => {
         setFormData({
@@ -30,7 +29,6 @@ function Login() {
                 },
                 withCredentials: true
             });
-            // dispatch(setAuthUser(res.data))
             setUserData(res.data);
             console.log(userData)
             navigate('/');

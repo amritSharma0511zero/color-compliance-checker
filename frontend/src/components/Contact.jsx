@@ -11,7 +11,6 @@ const Contact = () => {
   });
 
   useEffect(() => {
-    // Simulate fetching data from an API
     setTimeout(() => {
       setContactInfo({
         email: "amrit882622@gmail.com",

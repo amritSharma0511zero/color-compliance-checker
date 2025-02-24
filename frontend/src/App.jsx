@@ -11,7 +11,6 @@ import { createContext, useState, useContext, useEffect } from "react";
 import Signup from "./components/Signup.jsx";
 import Login from "./components/Login.jsx";
 
-// Create Context for brandColors
 export const DataContext = createContext();
 
 const Layout = () => {
@@ -33,7 +32,6 @@ const Layout = () => {
 
   const [brandColors, setBrandColors] = useState(initialColors || defaultColors);
 
-  // Save colors to localStorage whenever brandColors change
   useEffect(() => {
     localStorage.setItem("brandColors", JSON.stringify(brandColors));
   }, [brandColors]);
@@ -46,14 +44,13 @@ const Layout = () => {
     <DataContext.Provider value={{ brandColors, setBrandColors, userData, setUserData }}>
       <div className="flex flex-col justify-between z-10 w-full h-screen">
         <Header />
-        <Outlet /> {/* Now child components can access brandColors via context */}
+        <Outlet />
         <Footer />
       </div>
     </DataContext.Provider>
   );
 };
 
-// Custom hook for using brandColors in child components
 export const useData = () => {
   return useContext(DataContext);
 };
@@ -61,7 +58,7 @@ export const useData = () => {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />, // Wrap pages with Layout
+    element: <Layout />, 
     children: [
       { path: "/", element: <ColorChecker /> },
       { path: "/about", element: <About /> },

@@ -6,11 +6,6 @@ const About = () => {
     <div className="flex items-center justify-center p-6">
       <div className="max-w-3xl bg-white shadow-xl rounded-lg p-8">
         <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">🎨 About Color Compliance Checker</h1>
-        {/* const defaultColors = {
-    primary: ["#FF0000", "#003DA5"],
-    secondary: ["#72B5E8", "#54585A"],
-    accent: ["#FFB612", "#158B45"],
-  }; */}
         <p className="text-gray-600 text-center leading-relaxed flex flex-col items-center gap-5">
           If you are not logged in then these are the default color: <br />
           <div className="flex gap-5">
