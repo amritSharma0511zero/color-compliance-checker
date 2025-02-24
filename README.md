@@ -71,10 +71,10 @@ npm start
 #### Start the Frontend:
 ```sh
 cd frontend
-npm start
+npm run dev
 ```
 
-## 🔑 Authentication Middleware
+## 🔑 Authenticatiosdleware
 The project includes authentication middleware to protect routes:
 ```js
 const jwt = require("jsonwebtoken");
