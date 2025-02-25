@@ -18,12 +18,12 @@ const colorSimilarity = (color1, color2) => {
   return Math.max(0, 100 - (distance / 441.67) * 100);
 };
 
-const luminance = ([r, g, b]) => {
+const luminance = ([r, g, b]) => {     //humans perceive
   const a = [r, g, b].map((v) => (v /= 255) <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4);
   return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
 };
 
-const contrastRatio = (bgColor, textColor) => {
+const contrastRatio = (bgColor, textColor) => {       //readable text
   const L1 = luminance(hexToRgb(bgColor));
   const L2 = luminance(hexToRgb(textColor));
   return (Math.max(L1, L2) + 0.05) / (Math.min(L1, L2) + 0.05);
@@ -57,43 +57,6 @@ const ColorChecker = () => {
       extractColors(imageData);
     });
   };
-
-//   const extractColors = (imageData) => {
-//   const img = new Image();
-//   img.crossOrigin = "Anonymous";
-//   img.src = imageData.url;
-
-//   img.onload = () => {
-//     const colorThief = new ColorThief();
-//     const extractedColors = colorThief.getPalette(img, 100).map(
-//       (rgb) => `#${rgb.map((c) => c.toString(16).padStart(2, "0")).join("")}`
-//     );
-
-//     // Filter out similar colors
-//     const uniqueColors = [];
-//     extractedColors.forEach((color) => {
-//       if (!uniqueColors.some((existingColor) => colorSimilarity(color, existingColor) >= 80)) {
-//         uniqueColors.push(color);
-//       }
-//     });
-
-//     const analysis = uniqueColors.map((color) => {
-//       const bestMatch = getBestMatch(color);
-//       const textColor = "#FFFFFF";
-//       const contrast = contrastRatio(color, textColor).toFixed(2);
-//       const isReadable = contrast >= 4.5 ? "Readable" : "Not Readable";
-//       const guidelineMatch = bestMatch.similarity >= 80 ? "✅ Matches Brand Guidelines" : "⚠ May Not Match Brand Guidelines";
-
-//       const fixSuggestion = isReadable === "Not Readable"
-//         ? contrast < 3 ? "Consider using a darker text color for better readability." : "A slightly darker text color may improve readability."
-//         : "No fix needed.";
-
-//       return { color, bestMatch, contrast, isReadable, guidelineMatch, fixSuggestion };
-//     });
-
-//     setReports((prev) => [{ image: imageData.name, analysis }, ...prev]);
-//   };
-// };
 
 
 const extractColors = (imageData) => {
@@ -161,10 +124,10 @@ const saveReportToDB = async (report) => {
         headers: {
           "Content-Type": "application/json",
         },
-        withCredentials: true, // Ensure cookies are sent
+        withCredentials: true,
       }
     );
-    setCurrentData({
+    setCurrentData({     // error here
       image:"",
       imageAnalysis:""
     })
