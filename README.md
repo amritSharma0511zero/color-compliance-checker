@@ -11,6 +11,7 @@ This project allows users to upload an image and check how similar its colors ar
 - 👤 **Profile Page**: Available only to logged-in users to update information and manage colors.
 - 🔐 **Authentication**: Includes Sign-up and Login pages with JWT-based authentication.
 - 🚀 **Enhanced UI/UX**: Uses Reactbit animations, TailwindCSS, and FortAwesome icons.
+- 💬 **Chatbox Integration**: Users can interact through a chatbox that supports text messaging, voice command.
 
 ## 🛠 Tech Stack
 ### Frontend:
